@@ -40,14 +40,21 @@ class QuizTopicDataSource : NSObject, UITableViewDataSource {
         
         return cell
     }
-    
 }
 
-class ViewController: UIViewController {
+class QuizTopicDelegate : NSObject, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.window?.rootViewController?.performSegue(withIdentifier: "showQuestion", sender: tableView)
+    }
+}
+
+class ViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var quizTopicTable: UITableView!
 
     var quizTopicDataSource: QuizTopicDataSource? = nil
+    var quizTopicDelegate: QuizTopicDelegate? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +67,8 @@ class ViewController: UIViewController {
         
         quizTopicDataSource = QuizTopicDataSource([mathTopic, marvelTopic, scienceTopic])
         quizTopicTable.dataSource = quizTopicDataSource
+        quizTopicDelegate = QuizTopicDelegate()
+        quizTopicTable.delegate = quizTopicDelegate
     }
 
     // on settings click
@@ -69,6 +78,5 @@ class ViewController: UIViewController {
         alertController.addAction(UIAlertAction(title: "OK", style: .default))
         self.present(alertController, animated: true, completion: nil)
     }
-
 }
 
