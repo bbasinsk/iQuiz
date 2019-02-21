@@ -53,14 +53,24 @@ class QuizTopicTableViewController: UITableViewController {
         let mathQuiz = QuizData(
             title: "Mathematics",
             desc: "Did you pass the third grade?",
-            questions: [QuizQuestion(
-                question: "What is 2+2?",
-                possibleAnswers: [
-                    "4",
-                    "22",
-                    "An irrational number",
-                    "Nobody knows"],
-                trueAnswer: 1)])
+            questions: [
+                QuizQuestion(
+                    question: "What is 2+2?",
+                    possibleAnswers: [
+                        "4",
+                        "22",
+                        "An irrational number",
+                        "Nobody knows"],
+                    trueAnswer: 1),
+                QuizQuestion(
+                    question: "What is 4+2?",
+                    possibleAnswers: [
+                        "22",
+                        "6",
+                        "An irrational number",
+                        "Nobody knows"],
+                    trueAnswer: 2)
+            ])
         
         quizzes = [scienceQuiz, mathQuiz]
     }
@@ -145,5 +155,4 @@ class QuizTopicTableViewController: UITableViewController {
         alertController.addAction(UIAlertAction(title: "OK", style: .default))
         self.present(alertController, animated: true, completion: nil)
     }
-
 }

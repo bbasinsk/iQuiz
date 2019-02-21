@@ -22,7 +22,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <items>
-                                <navigationItem title="Title" id="lL4-bL-J9D">
+                                <navigationItem title="iQuiz" id="lL4-bL-J9D">
                                     <barButtonItem key="rightBarButtonItem" title="Settings" id="KRc-QK-UCH">
                                         <connections>
                                             <action selector="settingsBtnPress:" destination="jCh-Ze-MXL" id="Hu2-ff-lzJ"/>
@@ -162,6 +162,8 @@
                     <connections>
                         <outlet property="questionTableView" destination="rXT-TN-rIM" id="Qzl-AH-Ono"/>
                         <outlet property="questionText" destination="MLD-bT-2Sp" id="0Df-Xe-vMC"/>
+                        <outlet property="questionTitle" destination="E6H-7m-4Vo" id="Lmf-QW-9WZ"/>
+                        <segue destination="1qm-Ee-jn9" kind="show" identifier="toAnswer" id="Qag-Wp-NUo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a6u-pv-vO4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -171,10 +173,96 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1047.8260869565217" y="130.58035714285714"/>
+            <point key="canvasLocation" x="1113" y="131"/>
+        </scene>
+        <!--Answer View Controller-->
+        <scene sceneID="NxD-FL-qut">
+            <objects>
+                <viewController id="1qm-Ee-jn9" customClass="AnswerViewController" customModule="iQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dbM-eS-zb0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hgd-T1-ad2">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Answer #1" id="mm1-xm-Z9K">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="vRS-i9-rpJ">
+                                            <connections>
+                                                <segue destination="jCh-Ze-MXL" kind="show" customClass="SegueFromLeft" customModule="iQuiz" customModuleProvider="target" id="CRP-1X-kp4"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Next" id="1W1-yv-PRm">
+                                            <connections>
+                                                <action selector="onNext:" destination="1qm-Ee-jn9" id="pBF-ni-X5y"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="575-e5-cOG">
+                                <rect key="frame" x="0.0" y="110" width="414" height="189"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="575-e5-cOG" secondAttribute="height" multiplier="46:21" id="051-hu-B5z"/>
+                                    <constraint firstAttribute="height" constant="189" id="mht-xh-cUN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Answer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FvL-Nb-B7a">
+                                <rect key="frame" x="20" y="315" width="374" height="155"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="FvL-Nb-B7a" secondAttribute="height" multiplier="374:155" id="d8a-tB-pi7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Correct" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nb-Om-lcC">
+                                <rect key="frame" x="20" y="489" width="374" height="140"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="4nb-Om-lcC" secondAttribute="height" multiplier="187:70" id="wqc-9P-tc8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4nb-Om-lcC" firstAttribute="top" secondItem="FvL-Nb-B7a" secondAttribute="bottom" constant="19" id="3S0-6u-n8Z"/>
+                            <constraint firstItem="575-e5-cOG" firstAttribute="trailing" secondItem="NFX-MP-Mqv" secondAttribute="trailing" id="6Pa-Xz-qDn"/>
+                            <constraint firstItem="Hgd-T1-ad2" firstAttribute="trailing" secondItem="NFX-MP-Mqv" secondAttribute="trailing" id="BBH-bg-YbC"/>
+                            <constraint firstItem="NFX-MP-Mqv" firstAttribute="top" secondItem="Hgd-T1-ad2" secondAttribute="bottom" constant="-44" id="C6x-KC-dYV"/>
+                            <constraint firstItem="NFX-MP-Mqv" firstAttribute="trailing" secondItem="FvL-Nb-B7a" secondAttribute="trailing" constant="20" id="Cec-Xv-cgm"/>
+                            <constraint firstItem="NFX-MP-Mqv" firstAttribute="trailing" secondItem="4nb-Om-lcC" secondAttribute="trailing" constant="20" id="G4f-qi-aiz"/>
+                            <constraint firstItem="4nb-Om-lcC" firstAttribute="leading" secondItem="NFX-MP-Mqv" secondAttribute="leading" constant="20" id="MK6-Vo-ue1"/>
+                            <constraint firstItem="575-e5-cOG" firstAttribute="leading" secondItem="NFX-MP-Mqv" secondAttribute="leading" id="aBW-Yf-ZOr"/>
+                            <constraint firstItem="FvL-Nb-B7a" firstAttribute="top" secondItem="575-e5-cOG" secondAttribute="bottom" constant="16" id="gsl-pl-xyb"/>
+                            <constraint firstItem="FvL-Nb-B7a" firstAttribute="leading" secondItem="NFX-MP-Mqv" secondAttribute="leading" constant="20" id="nMp-PY-NxP"/>
+                            <constraint firstItem="575-e5-cOG" firstAttribute="leading" secondItem="NFX-MP-Mqv" secondAttribute="leading" id="qV6-fd-COG"/>
+                            <constraint firstItem="Hgd-T1-ad2" firstAttribute="leading" secondItem="NFX-MP-Mqv" secondAttribute="leading" id="uKI-WN-7YW"/>
+                            <constraint firstItem="575-e5-cOG" firstAttribute="trailing" secondItem="NFX-MP-Mqv" secondAttribute="trailing" id="vSA-aV-p1q"/>
+                            <constraint firstItem="575-e5-cOG" firstAttribute="top" secondItem="Hgd-T1-ad2" secondAttribute="bottom" constant="22" id="yXe-rQ-r1m"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="NFX-MP-Mqv"/>
+                    </view>
+                    <connections>
+                        <outlet property="answerText" destination="FvL-Nb-B7a" id="bdP-2A-Kbk"/>
+                        <outlet property="answerTitle" destination="mm1-xm-Z9K" id="M6B-E1-2nj"/>
+                        <outlet property="correctText" destination="4nb-Om-lcC" id="yc5-Ra-k4e"/>
+                        <outlet property="questionText" destination="575-e5-cOG" id="cPJ-Vn-mHo"/>
+                        <segue destination="9W7-8p-rop" kind="show" identifier="nextQuestion" id="z9u-oY-9ZW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Xh-KC-V8O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2304" y="131"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="DvA-lT-RhV"/>
+        <segue reference="z9u-oY-9ZW"/>
+        <segue reference="CRP-1X-kp4"/>
     </inferredMetricsTieBreakers>
 </document>

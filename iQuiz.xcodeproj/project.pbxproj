@@ -10,6 +10,7 @@
 		08AE4CC2221DD44C00B022DE /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE4CC1221DD44C00B022DE /* QuestionViewController.swift */; };
 		08AE4CC4221E2C0300B022DE /* QuizTopicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE4CC3221E2C0300B022DE /* QuizTopicTableViewController.swift */; };
 		08AE4CC6221E34EE00B022DE /* Segues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE4CC5221E34EE00B022DE /* Segues.swift */; };
+		08AE4CC8221E69A800B022DE /* AnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE4CC7221E69A800B022DE /* AnswerViewController.swift */; };
 		08C629BE220E531F004FD942 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C629BD220E531F004FD942 /* AppDelegate.swift */; };
 		08C629C3220E531F004FD942 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08C629C1220E531F004FD942 /* Main.storyboard */; };
 		08C629C5220E5321004FD942 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08C629C4220E5321004FD942 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 		08AE4CC1221DD44C00B022DE /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		08AE4CC3221E2C0300B022DE /* QuizTopicTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizTopicTableViewController.swift; sourceTree = "<group>"; };
 		08AE4CC5221E34EE00B022DE /* Segues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segues.swift; sourceTree = "<group>"; };
+		08AE4CC7221E69A800B022DE /* AnswerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerViewController.swift; sourceTree = "<group>"; };
 		08C629BA220E531F004FD942 /* iQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08C629BD220E531F004FD942 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08C629C2220E531F004FD942 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				08C629C6220E5321004FD942 /* LaunchScreen.storyboard */,
 				08C629C9220E5321004FD942 /* Info.plist */,
 				08AE4CC1221DD44C00B022DE /* QuestionViewController.swift */,
+				08AE4CC7221E69A800B022DE /* AnswerViewController.swift */,
 			);
 			path = iQuiz;
 			sourceTree = "<group>";
@@ -143,6 +146,7 @@
 			files = (
 				08AE4CC4221E2C0300B022DE /* QuizTopicTableViewController.swift in Sources */,
 				08AE4CC6221E34EE00B022DE /* Segues.swift in Sources */,
+				08AE4CC8221E69A800B022DE /* AnswerViewController.swift in Sources */,
 				08C629BE220E531F004FD942 /* AppDelegate.swift in Sources */,
 				08AE4CC2221DD44C00B022DE /* QuestionViewController.swift in Sources */,
 			);
