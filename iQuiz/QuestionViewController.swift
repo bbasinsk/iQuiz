@@ -8,18 +8,6 @@
 
 import UIKit
 
-class QuizQuestion {
-    var text: String
-    var answers: [String]
-    var correct: Int
-    
-    init(question: String, possibleAnswers: [String], trueAnswer: Int) {
-        text = question
-        answers = possibleAnswers
-        correct = trueAnswer
-    }
-}
-
 class QuizAnswer {
     var title: String? = nil
     

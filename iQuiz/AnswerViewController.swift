@@ -24,7 +24,7 @@ class AnswerViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let correctAnswer = questions[currentQuestion].correct
+        let correctAnswer = Int(questions[currentQuestion].answer)!
         
         questionText.text = questions[currentQuestion].text
         answerText.text = questions[currentQuestion].answers[correctAnswer - 1]
@@ -47,7 +47,7 @@ class AnswerViewController: UIViewController {
         }
         if (segue.identifier == "toFinish") {
             let totalCorrect = self.questions
-                .map { $0.correct }
+                .map { Int($0.answer)! }
                 .enumerated()
                 .reduce(0, { sum, cur in selectedAnswers[cur.offset] == cur.element ? sum + 1 : sum })
 

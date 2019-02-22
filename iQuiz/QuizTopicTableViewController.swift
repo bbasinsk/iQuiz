@@ -8,22 +8,23 @@
 
 import UIKit
 
-class QuizData {
-    var title: String? = nil
-    var desc: String? = nil
-    var questions: [QuizQuestion] = []
-    
-    init(title: String, desc: String, questions: [QuizQuestion]) {
-        self.title = title
-        self.desc = desc
-        self.questions = questions
-    }
+struct QuizQuestion: Codable {
+    var text: String
+    var answers: [String]
+    var answer: String
+}
+
+
+struct QuizData: Codable {
+    var title: String?
+    var desc: String?
+    var questions: [QuizQuestion]
 }
 
 
 class QuizTopicTableViewController: UITableViewController {
     
-
+    var currentUrl: URL = URL(string: "https://tednewardsandbox.site44.com/questions.json")!
     var quizzes: [QuizData] = []
 
     override func viewDidLoad() {
@@ -34,45 +35,34 @@ class QuizTopicTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        loadQuizzes()
+        DispatchQueue.global().async {
+            self.loadQuizzes(url: self.currentUrl)
+        }
+        
     }
     
-    private func loadQuizzes() {
-        let scienceQuiz = QuizData(
-            title: "Science!",
-            desc: "Because SCIENCE!",
-            questions: [QuizQuestion(
-                question: "What is fire?",
-                possibleAnswers: [
-                    "One of the four classical elements",
-                    "A magical reaction given to us by God",
-                    "A band that hasn't yet been discovered",
-                    "Fire! Fire! Fire! heh-heh"],
-                trueAnswer: 1)])
+    private func loadQuizzes(url: URL) {
         
-        let mathQuiz = QuizData(
-            title: "Mathematics",
-            desc: "Did you pass the third grade?",
-            questions: [
-                QuizQuestion(
-                    question: "What is 2+2?",
-                    possibleAnswers: [
-                        "4",
-                        "22",
-                        "An irrational number",
-                        "Nobody knows"],
-                    trueAnswer: 1),
-                QuizQuestion(
-                    question: "What is 4+2?",
-                    possibleAnswers: [
-                        "22",
-                        "6",
-                        "An irrational number",
-                        "Nobody knows"],
-                    trueAnswer: 2)
-            ])
-        
-        quizzes = [scienceQuiz, mathQuiz]
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+            
+            guard let data = data else { return }
+            //Implement JSON decoding and parsing
+            do {
+                //Decode retrived data with JSONDecoder and assing type of Article object
+                let qData = try JSONDecoder().decode([QuizData].self, from: data)
+
+                //Get back to the main queue
+                DispatchQueue.main.async {
+                    self.quizzes = qData
+                    self.tableView.reloadData()
+                }
+            } catch let jsonError {
+                print(jsonError)
+            }
+        }.resume()
     }
     
     // MARK: - Table view data source
@@ -97,7 +87,6 @@ class QuizTopicTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "showQuestion", sender: self)
     }
 
