@@ -95,7 +95,6 @@
                                     <navigationItem title="Question #1" id="E6H-7m-4Vo">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="bo8-0D-R1T">
                                             <connections>
-                                                <action selector="onBack:" destination="9W7-8p-rop" id="Yb5-pG-loK"/>
                                                 <segue destination="jCh-Ze-MXL" kind="show" customClass="SegueFromLeft" customModule="iQuiz" customModuleProvider="target" id="DvA-lT-RhV"/>
                                             </connections>
                                         </barButtonItem>
@@ -254,15 +253,76 @@
                         <outlet property="correctText" destination="4nb-Om-lcC" id="yc5-Ra-k4e"/>
                         <outlet property="questionText" destination="575-e5-cOG" id="cPJ-Vn-mHo"/>
                         <segue destination="9W7-8p-rop" kind="show" identifier="nextQuestion" id="z9u-oY-9ZW"/>
+                        <segue destination="Gya-bh-46N" kind="show" identifier="toFinish" customClass="SegueFromRight" customModule="iQuiz" customModuleProvider="target" id="ntY-je-tuQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Xh-KC-V8O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="gKI-mi-mO0">
+                    <connections>
+                        <segue destination="jCh-Ze-MXL" kind="show" customClass="SegueFromLeft" customModule="iQuiz" customModuleProvider="target" id="PLt-oL-iAF"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2304" y="131"/>
+        </scene>
+        <!--Finish View Controller-->
+        <scene sceneID="asE-Mw-G9G">
+            <objects>
+                <viewController id="Gya-bh-46N" customClass="FinishViewController" customModule="iQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aIi-gf-Itk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ij-s4-Kjg">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="NiU-Ke-z24"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Finished" id="Y7g-g2-cRU">
+                                        <barButtonItem key="rightBarButtonItem" title="Next" id="aBR-Qj-VWN">
+                                            <connections>
+                                                <segue destination="jCh-Ze-MXL" kind="show" customClass="SegueFromLeft" customModule="iQuiz" customModuleProvider="target" id="ewP-YD-uIn"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 out of 0 correct" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wnd-Cb-WD0">
+                                <rect key="frame" x="29" y="341" width="365" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Perfect!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FRQ-ek-8MC">
+                                <rect key="frame" x="29" y="258" width="365" height="59"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6Ij-s4-Kjg" firstAttribute="top" secondItem="QIo-o3-Rmu" secondAttribute="top" id="1YC-tc-eLN"/>
+                            <constraint firstItem="6Ij-s4-Kjg" firstAttribute="trailing" secondItem="QIo-o3-Rmu" secondAttribute="trailing" id="lTs-77-KJV"/>
+                            <constraint firstItem="6Ij-s4-Kjg" firstAttribute="leading" secondItem="QIo-o3-Rmu" secondAttribute="leading" id="meZ-sL-xMN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="QIo-o3-Rmu"/>
+                    </view>
+                    <connections>
+                        <outlet property="humanReadableScoreLabel" destination="FRQ-ek-8MC" id="QX9-Xd-Ayg"/>
+                        <outlet property="scoreLabel" destination="wnd-Cb-WD0" id="taL-BV-xoA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xll-8Q-H3y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3305.7971014492755" y="130.58035714285714"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="z9u-oY-9ZW"/>
-        <segue reference="CRP-1X-kp4"/>
+        <segue reference="PLt-oL-iAF"/>
     </inferredMetricsTieBreakers>
 </document>

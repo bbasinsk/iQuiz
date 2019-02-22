@@ -45,13 +45,23 @@ class AnswerViewController: UIViewController {
             questionVC.questions = self.questions
             questionVC.selectedAnswers = self.selectedAnswers
         }
+        if (segue.identifier == "toFinish") {
+            let totalCorrect = self.questions
+                .map { $0.correct }
+                .enumerated()
+                .reduce(0, { sum, cur in selectedAnswers[cur.offset] == cur.element ? sum + 1 : sum })
+
+            let finishVC = segue.destination as! FinishViewController
+            finishVC.numberCorrect = totalCorrect
+            finishVC.questionCount = self.questions.count
+        }
     }
  
     @IBAction func onNext(_ sender: Any) {
         if (questions.count > currentQuestion + 1) {
             self.performSegue(withIdentifier: "nextQuestion", sender: self)
         } else {
-            NSLog("TO FINISH SCREEN")
+            self.performSegue(withIdentifier: "toFinish", sender: self)
         }
     }
     

@@ -91,7 +91,7 @@ class QuizTopicTableViewController: UITableViewController {
 
         cell.textLabel?.text = quizzes[indexPath.row].title
         cell.detailTextLabel?.text = quizzes[indexPath.row].desc
-        cell.imageView?.image = #imageLiteral(resourceName: "ScienceIcon")
+        cell.imageView?.image = #imageLiteral(resourceName: "QuizIcon")
 
         return cell
     }
