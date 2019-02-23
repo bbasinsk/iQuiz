@@ -156,19 +156,25 @@
                         <viewLayoutGuide key="safeArea" id="EC5-Mk-Zm5"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="ZBk-ke-Ej2" appends="YES" id="bUU-AY-gya"/>
+                            <outletCollection property="gestureRecognizers" destination="IDW-no-JbY" appends="YES" id="nWR-l4-1Xk"/>
                         </connections>
                     </view>
                     <connections>
                         <outlet property="questionTableView" destination="rXT-TN-rIM" id="Qzl-AH-Ono"/>
                         <outlet property="questionText" destination="MLD-bT-2Sp" id="0Df-Xe-vMC"/>
                         <outlet property="questionTitle" destination="E6H-7m-4Vo" id="Lmf-QW-9WZ"/>
-                        <segue destination="1qm-Ee-jn9" kind="show" identifier="toAnswer" id="Qag-Wp-NUo"/>
+                        <segue destination="1qm-Ee-jn9" kind="show" identifier="toAnswer" customClass="SegueFromRight" customModule="iQuiz" customModuleProvider="target" id="Qag-Wp-NUo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a6u-pv-vO4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="right" id="ZBk-ke-Ej2">
                     <connections>
                         <segue destination="jCh-Ze-MXL" kind="show" customClass="SegueFromLeft" customModule="iQuiz" customModuleProvider="target" id="jvc-C8-e8Q"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="IDW-no-JbY">
+                    <connections>
+                        <segue destination="1qm-Ee-jn9" kind="show" identifier="toAnswer" customClass="SegueFromRight" customModule="iQuiz" customModuleProvider="target" id="C5b-Ea-7jB"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
@@ -246,6 +252,9 @@
                             <constraint firstItem="FvL-Nb-B7a" firstAttribute="top" secondItem="575-e5-cOG" secondAttribute="bottom" constant="8" id="xos-5j-KnY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NFX-MP-Mqv"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="gKI-mi-mO0" appends="YES" id="vk0-7B-wbW"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="answerText" destination="FvL-Nb-B7a" id="bdP-2A-Kbk"/>
@@ -330,6 +339,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="Qag-Wp-NUo"/>
         <segue reference="4f4-6J-L1S"/>
         <segue reference="ewP-YD-uIn"/>
     </inferredMetricsTieBreakers>
