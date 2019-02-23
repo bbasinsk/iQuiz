@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0886687E2220C66600DCE897 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0886687D2220C66600DCE897 /* Storage.swift */; };
 		08AE4CC2221DD44C00B022DE /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE4CC1221DD44C00B022DE /* QuestionViewController.swift */; };
 		08AE4CC4221E2C0300B022DE /* QuizTopicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE4CC3221E2C0300B022DE /* QuizTopicTableViewController.swift */; };
 		08AE4CC6221E34EE00B022DE /* Segues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE4CC5221E34EE00B022DE /* Segues.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0886687D2220C66600DCE897 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		08AE4CC1221DD44C00B022DE /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		08AE4CC3221E2C0300B022DE /* QuizTopicTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizTopicTableViewController.swift; sourceTree = "<group>"; };
 		08AE4CC5221E34EE00B022DE /* Segues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segues.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				08AE4CC1221DD44C00B022DE /* QuestionViewController.swift */,
 				08AE4CC9222084FB00B022DE /* FinishViewController.swift */,
 				08AE4CC7221E69A800B022DE /* AnswerViewController.swift */,
+				0886687D2220C66600DCE897 /* Storage.swift */,
 			);
 			path = iQuiz;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08AE4CC4221E2C0300B022DE /* QuizTopicTableViewController.swift in Sources */,
+				0886687E2220C66600DCE897 /* Storage.swift in Sources */,
 				08AE4CC6221E34EE00B022DE /* Segues.swift in Sources */,
 				08AE4CC8221E69A800B022DE /* AnswerViewController.swift in Sources */,
 				08C629BE220E531F004FD942 /* AppDelegate.swift in Sources */,

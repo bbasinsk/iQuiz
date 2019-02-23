@@ -50,9 +50,6 @@ class QuestionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        NSLog("CurrentQuestion \(currentQuestion)")
-
         questionTitle.title = "Question #\(currentQuestion  + 1)"
         questionText.text = questions[currentQuestion].text
         

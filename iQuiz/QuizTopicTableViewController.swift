@@ -14,13 +14,11 @@ struct QuizQuestion: Codable {
     var answer: String
 }
 
-
 struct QuizData: Codable {
     var title: String?
     var desc: String?
     var questions: [QuizQuestion]
 }
-
 
 class QuizTopicTableViewController: UITableViewController {
     
@@ -30,13 +28,12 @@ class QuizTopicTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
         DispatchQueue.global().async {
-            self.loadQuizzes(url: self.currentUrl)
+            if (Storage.fileExists("quizzes.json", in: .documents)) {
+                self.quizzes = Storage.retrieve("quizzes.json", from: .documents, as: [QuizData].self)
+            } else {
+                self.loadQuizzes(url: self.currentUrl)
+            }
         }
         
     }
@@ -45,11 +42,13 @@ class QuizTopicTableViewController: UITableViewController {
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error != nil {
-                print(error!.localizedDescription)
+                let error = UIAlertController(title: "Error", message: error!.localizedDescription, preferredStyle: .alert)
+                error.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(error, animated: true, completion: nil)
             }
             
             guard let data = data else { return }
-            //Implement JSON decoding and parsing
+
             do {
                 //Decode retrived data with JSONDecoder and assing type of Article object
                 let qData = try JSONDecoder().decode([QuizData].self, from: data)
@@ -58,9 +57,15 @@ class QuizTopicTableViewController: UITableViewController {
                 DispatchQueue.main.async {
                     self.quizzes = qData
                     self.tableView.reloadData()
+                    if (Storage.fileExists("quizzes.json", in: .documents)) {
+                        Storage.remove("quizzes.json", from: .documents)
+                    }
+                    Storage.store(qData, to: .documents, as: "quizzes.json")
                 }
             } catch let jsonError {
-                print(jsonError)
+                let error = UIAlertController(title: "Error", message: jsonError.localizedDescription, preferredStyle: .alert)
+                error.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(error, animated: true, completion: nil)
             }
         }.resume()
     }
@@ -90,42 +95,7 @@ class QuizTopicTableViewController: UITableViewController {
         performSegue(withIdentifier: "showQuestion", sender: self)
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -139,9 +109,20 @@ class QuizTopicTableViewController: UITableViewController {
     }
  
     @IBAction func settingsBtnPress(_ sender: Any) {
-        let alertController = UIAlertController(title: "Settings go here", message:
-            nil, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        let alertController = UIAlertController(title: "Quiz URL", message: nil, preferredStyle: .alert)
+        alertController.addTextField(configurationHandler: { textField in
+            textField.placeholder = "Enter json url here..."
+        })
+
+        alertController.addAction(UIAlertAction(title: "Update", style: .default, handler: { action in
+            if let url = alertController.textFields?.first?.text {
+                print("Json url: \(url)")
+                let jsonUrl = URL(string: url)!
+                self.loadQuizzes(url: jsonUrl)
+            }
+        }))
+        
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
 }
